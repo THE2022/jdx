@@ -102,7 +102,7 @@ public class JdService {
         JSONObject data = responseJo.getJSONObject("data");
         String ptKey = data.getString("pt_key");
         String ptPin = data.getString("pt_pin");
-        String cookie = StrUtil.format("pt_key={}; pt_pin={};", ptKey, ptPin);
+        String cookie = StrUtil.format("pt_key={};pt_pin={};", ptKey, ptPin);
         timedCache.remove(mobile);
         return new JdInfo().builder().cookie(cookie).build();
     }
