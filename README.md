@@ -11,7 +11,7 @@
 
 ## 安装说明
 
-本项目已打包成docker镜像，拉取配置即可使用
+本项目已打包成`docker`镜像，拉取配置即可使用
 > - docker安装方法不再赘述
 
 ### 1. 拉取并运行docker
@@ -44,17 +44,22 @@ docker run -d \
 后台访问需要的映射的`config`目录修改`config.json`文件。
 
 socialPlatforms为社交登录的配置，说明如下：
-- source： `GITEE` `GITHUB`
-- clientId：社交平台的配置应用的clientId
-- clientSecret：社交平台的配置应用的clientSecret
-- redirectUri：http://xxxx:xxx/oauth/callback/&lt;source&gt;
-  > - 这里的source必须为：`GITEE` 或 `GITHUB` （例：http://xxxx:xxx/oauth/callback/GITEE）
-  > - xxxx:xxx 为JDX的域名或者ip:port
-- admin：管理员的名称，多个以英文半角逗号`,`分割
+- `source`： `GITEE` `GITHUB` `BAIDU`
+- `clientId`：社交平台的配置应用的`clientId`
+- `clientSecret`：社交平台的配置应用的`clientSecret`
+- `redirectUri`：`http://xxxx:xxx/oauth/callback/<source>`
+  > - 这里的`source`必须为：`GITEE` 或 `GITHUB` （例：`http://xxxx:xxx/oauth/callback/GITEE`）
+  > - `xxxx:xxx` 为`JDX`的域名或者`ip:port`
+- `admin`：管理员的名称，多个以英文半角逗号`,`分割
 
 注意：
-- 社交登录的`source`目前只支持`GITEE` `GITHUB` 两种，请勿填写错误，推荐使用`GITEE`
+- 社交登录的`source`目前只支持`GITEE` `GITHUB` `BAIDU`，请勿填写错误，推荐使用`GITEE`
 - 配置文件不能写任何注释，必须是一个完整的json文件
+
+**配置应用相关文档**
+- [Gitee](https://gitee.com/api/v5/oauth_doc#/list-item-3)
+- [Github](https://docs.github.com/en/developers/apps/building-oauth-apps/creating-an-oauth-app)
+- [Baidu](http://developer.baidu.com/wiki/index.php?title=docs/pcs/guide/app_create)
 
 ## 更新说明
 待更新..
