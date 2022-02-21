@@ -10,7 +10,7 @@
     </parent>
     <groupId>cn.yiidii</groupId>
     <artifactId>jdx</artifactId>
-    <version>0.0.1</version>
+    <version>0.1.1</version>
     <name>${project.artifactId}</name>
 
     <properties>
@@ -18,12 +18,15 @@
         <hutool.version>5.7.21</hutool.version>
         <fastjson.version>1.2.79</fastjson.version>
         <jakarta.version>5.0.0</jakarta.version>
+        <justAuth.version>1.16.5</justAuth.version>
+        <quartz.version>2.3.2</quartz.version>
     </properties>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
@@ -61,6 +64,17 @@
             <version>RELEASE</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>me.zhyd.oauth</groupId>
+            <artifactId>JustAuth</artifactId>
+            <version>${justAuth.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz</artifactId>
+            <version>${quartz.version}</version>
+        </dependency>
+
     </dependencies>
 
     <build>

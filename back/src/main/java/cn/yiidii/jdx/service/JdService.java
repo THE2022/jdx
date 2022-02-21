@@ -80,6 +80,7 @@ public class JdService {
         responseJo = JSONObject.parseObject(response.body());
         this.checkErr(responseJo);
         timedCache.put(mobile, jdInfo);
+        jdInfo.setExpireTime(responseJo.getJSONObject("data").getLong("expire_time"));
         return jdInfo;
     }
 

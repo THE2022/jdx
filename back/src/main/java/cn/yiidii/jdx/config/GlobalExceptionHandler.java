@@ -4,12 +4,12 @@ import cn.hutool.core.util.StrUtil;
 import cn.yiidii.jdx.model.R;
 import cn.yiidii.jdx.model.enums.ExceptionCode;
 import cn.yiidii.jdx.model.ex.BizException;
+import cn.yiidii.jdx.model.ex.UnauthorizedException;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
-import javax.annotation.PostConstruct;
 import javax.servlet.ServletException;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
@@ -35,7 +35,7 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 
 
 /**
- *  GlobalExceptionHandler
+ * GlobalExceptionHandler
  *
  * @author ed w
  * @since 1.0
@@ -46,17 +46,20 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @PostConstruct
-    private void init() {
-        log.info("Condition type is WebApplication, init GlobalExceptionHandler...");
-    }
-
     @ExceptionHandler(BizException.class)
     @ResponseStatus(HttpStatus.OK)
     public R<?> bizException(BizException ex) {
         log.debug("BizException: {}", ex);
         log.warn("BizException: {}", ex.getMessage());
         return R.failed(ex.getCode(), ex.getMessage());
+    }
+
+    @ExceptionHandler(UnauthorizedException.class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    public R<?> unauthorizedException(UnauthorizedException ex) {
+        log.debug("UnauthorizedException: {}", ex);
+        log.warn("UnauthorizedException: {}", ex.getMessage());
+        return R.failed(ExceptionCode.UNAUTHORIZED.getCode(), ExceptionCode.UNAUTHORIZED.getMsg(), ex.getMessage());
     }
 
     @ExceptionHandler(NoHandlerFoundException.class)

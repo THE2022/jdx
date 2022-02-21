@@ -22,6 +22,8 @@ public class JdInfo {
     private String lsId;
     private String rsaModulus;
 
+    private Long expireTime;
+
     private String preCookie;
     private String cookie;
 
