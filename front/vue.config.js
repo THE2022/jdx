@@ -1,4 +1,10 @@
+const Timestamp = new Date().getTime();
 module.exports = {
+  publicPath: process.env.NODE_ENV === "production" ? "/" : "/",
+  outputDir: "dist",
+  assetsDir: "static",
+  filenameHashing: false,
+  productionSourceMap: false,
   devServer: {
     host: "0.0.0.0",
     port: 8080, // 端口号
@@ -16,6 +22,20 @@ module.exports = {
           "^/api": "" //这里理解成用'/api'代替target里面的地址,比如我要调用'http://40.00.100.100:3002/user/add'，直接写'/api/user/add'即可
         }
       }
+    }
+  },
+  configureWebpack: {
+    output: {
+      filename: `js/[name].${Timestamp}.js`,
+      chunkFilename: `js/[name].${Timestamp}.js`
+    }
+  },
+  css: {
+    //重点.
+    extract: {
+      // 打包后css文件名称添加时间戳
+      filename: `css/[name].${Timestamp}.css`,
+      chunkFilename: `css/[name].${Timestamp}.css`
     }
   }
 };
