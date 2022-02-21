@@ -47,8 +47,8 @@ socialPlatforms为社交登录的配置，说明如下：
 - source： `GITEE` `GITHUB`
 - clientId：社交平台的配置应用的clientId
 - clientSecret：社交平台的配置应用的clientSecret
-- redirectUri：http://xxxx:xxx/oauth/callback/<source>
-  > - 这里的source必须为：`GITEE` 或 `GITHUB`
+- redirectUri：http://xxxx:xxx/oauth/callback/&lt;source&gt;
+  > - 这里的source必须为：`GITEE` 或 `GITHUB` （例：http://xxxx:xxx/oauth/callback/GITEE）
   > - xxxx:xxx 为JDX的域名或者ip:port
 - admin：管理员的名称，多个以英文半角逗号`,`分割
 
