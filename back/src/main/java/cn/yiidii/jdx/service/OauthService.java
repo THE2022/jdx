@@ -23,6 +23,7 @@ import me.zhyd.oauth.enums.AuthResponseStatus;
 import me.zhyd.oauth.model.AuthCallback;
 import me.zhyd.oauth.model.AuthResponse;
 import me.zhyd.oauth.model.AuthUser;
+import me.zhyd.oauth.request.AuthBaiduRequest;
 import me.zhyd.oauth.request.AuthGiteeRequest;
 import me.zhyd.oauth.request.AuthGithubRequest;
 import me.zhyd.oauth.request.AuthRequest;
@@ -50,9 +51,12 @@ public class OauthService {
      */
     public AuthRequest getAuthRequest(String source) {
         SocialPlatformEnum socialPlatformEnum = SocialPlatformEnum.get(source);
+        if (Objects.isNull(socialPlatformEnum)) {
+            throw new BizException("暂不支持该平台登录");
+        }
         SocialPlatform socialConfig = systemConfigProperties.getSocialConfig(socialPlatformEnum);
         if (Objects.isNull(socialConfig)) {
-            throw new BizException("暂不支持该平台登录");
+            throw new BizException("未配置该平台");
         }
         switch (socialPlatformEnum) {
             case GITHUB: {
@@ -64,6 +68,13 @@ public class OauthService {
             }
             case GITEE: {
                 return new AuthGiteeRequest(AuthConfig.builder()
+                        .clientId(socialConfig.getClientId())
+                        .clientSecret(socialConfig.getClientSecret())
+                        .redirectUri(socialConfig.getRedirectUri())
+                        .build());
+            }
+            case BAIDU: {
+                return new AuthBaiduRequest(AuthConfig.builder()
                         .clientId(socialConfig.getClientId())
                         .clientSecret(socialConfig.getClientSecret())
                         .redirectUri(socialConfig.getRedirectUri())
